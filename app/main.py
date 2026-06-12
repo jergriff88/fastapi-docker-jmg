@@ -1,3 +1,5 @@
+import os
+import sys
 import uvicorn
 from fastapi import FastAPI
 
@@ -16,3 +18,7 @@ def health_check():
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+def poorly_formatted_function(x,y,z):
+    result=x+y+z
+    return result
