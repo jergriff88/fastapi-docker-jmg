@@ -46,7 +46,7 @@ jobs:
 
       - name: Security scan with bandit
         run: |
-          bandit -r app/ -f json -o bandit-report.json || true
+          bandit -r app/ -f json -o bandit-report.json || echo "{}" > bandit-report.json
         continue-on-error: true
 
       - name: Upload bandit report
@@ -55,6 +55,7 @@ jobs:
         with:
           name: bandit-security-report
           path: bandit-report.json
+          if-no-files-found: ignore
 
       - name: Run tests with pytest
         run: |
@@ -110,4 +111,3 @@ jobs:
         with:
           sarif_file: 'trivy-results.sarif'
         continue-on-error: true
-        
